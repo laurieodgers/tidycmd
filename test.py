@@ -8,7 +8,9 @@ tidyCmd = TidyCmd(['ifconfig'])
 tidyCmd.appendPipe(['grep', 'eth0'])
 # second pipe
 tidyCmd.appendPipe(['awk', '{ print $5 }'])
-
+# print out the command as a string
+print(tidyCmd)
+print(tidyCmd)
 # run the command
 tidyCmd.run()
 
@@ -18,5 +20,5 @@ print(tidyCmd.getStdOut())
 # print stdErr
 print(tidyCmd.getStdErr())
 
-# print out the command as a string
-print(tidyCmd)
+
+

@@ -4,7 +4,7 @@ TidyCmd is a class for Python 3.5 to tidy up the process of piping Unix shell co
 Instead of large blocks of Popen text chained together, this class will automatically pipe commands together for you. It stores the exit code, stdOut, and stdErr for processing in your code.
 
 ### Version
-0.1.0
+0.2.0
 
 ## License
 MIT License
@@ -13,9 +13,10 @@ MIT License
 Contributions are always welcome; if you fix a bug or implement some extra functionality please issue a PR back to https://github.com/laurieodgers/tidycmd
 
 ## Features
-  - Allows for neater code vs large blocks of Popen statements chained together
-  - No need to fiddle with connecting stdout to stdin for each pipe
-  - Choose your format to decode stdOut/stdErr to
+  - Allows for neater code vs large blocks of Popen statements chained together.
+  - No need to fiddle with connecting stdout to stdin for each pipe.
+  - Choose your format to decode stdOut/stdErr to.
+  - str(tidyCmd) will output a string which can be used in a shell. Automatically quotes any elements which contain spaces.
 
 ### Usage
 

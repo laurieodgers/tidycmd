@@ -2,6 +2,8 @@
 # A class to abstract out calls to Popen
 # Allows for easy chaining of commands akin to piping them on the command line
 from subprocess import Popen, PIPE
+import re
+import copy
 
 class TidyCmd:
     # cmd arg is a list
@@ -18,8 +20,20 @@ class TidyCmd:
     # turns this object into a command line string
     def __str__(self):
         string = None
-        for cmd in self.cmds:
-            # if this isnt the first command then add a pipe
+        
+        # take a copy of the commands so that we can modify it before output
+        cmdsCopy = copy.deepcopy(self.cmds)
+        
+        # loop over the commands
+        for cmd in cmdsCopy:
+            # loop over each block in the command
+            for i,block in enumerate(cmd):
+                # look for spaces, and add quotes if found
+                if re.search(r"\s", cmd[i]):
+                    # add quotes
+                    cmd[i] = "'" + cmd[i] + "'"
+            
+            # if this isnt the first command then add a pipe character
             if (string is not None):
                 string = string + ' | ' + " ".join(cmd)
             else:
