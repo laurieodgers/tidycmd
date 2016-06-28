@@ -1,4 +1,6 @@
-# TidyCmd
+# TidyCmd v0.2.0
+# https://github.com/laurieodgers/tidycmd
+#
 # A class to abstract out calls to Popen
 # Allows for easy chaining of commands akin to piping them on the command line
 from subprocess import Popen, PIPE
