@@ -10,7 +10,7 @@ Instead of large blocks of Popen text chained together, this class will automati
 MIT License
 
 ## Contributing
-Contributions are always welcome; if you fix a bug or implement some extra functionality please issue a PR back to https://github.com/laurieodgers/pythoncmd
+Contributions are always welcome; if you fix a bug or implement some extra functionality please issue a PR back to https://github.com/laurieodgers/tidycmd
 
 ## Features
   - Allows for neater code vs large blocks of Popen statements chained together
