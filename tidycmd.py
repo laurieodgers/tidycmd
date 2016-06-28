@@ -1,0 +1,65 @@
+# TidyCmd
+# A class to abstract out calls to Popen
+# Allows for easy chaining of commands akin to piping them on the command line
+from subprocess import Popen, PIPE
+
+class TidyCmd:
+    # cmd arg is a list
+    def __init__(self, cmd):
+        self.cmds = []
+        self.stdOut = PIPE
+        self.stdErr = PIPE
+        self.stdIn = PIPE
+        self.returnCode = -1
+
+        # append the list to the cmds list to create a 2d list
+        self.cmds.append(cmd)
+
+    # turns this object into a command line string
+    def __str__(self):
+        string = None
+        for cmd in self.cmds:
+            # if this isnt the first command then add a pipe
+            if (string is not None):
+                string = string + ' | ' + " ".join(cmd)
+            else:
+                string = " ".join(cmd)
+            
+        return string
+
+    # decode stdout and return a string
+    def getStdOut(self, encoding='UTF-8'):
+        return self.stdOut.decode(encoding)
+    
+    # decode stderr and return a string
+    def getStdErr(self, encoding='UTF-8'):
+        return self.stdErr.decode(encoding)
+
+    # append a command to the chain
+    def appendPipe(self, cmd):
+        self.cmds.append(cmd)
+
+    # Run the command chain
+    def run(self):
+        lastCmd = None
+
+        # loop over the commands
+        for cmd in self.cmds:
+            # if this is not the first command then pipe stdout from the last command to stdin
+            if (lastCmd is not None):
+                self.stdIn = lastCmd.stdout            # set the stdin for this command to be last commands stdout
+
+            # run the command with stdin from last command
+            thisCmd = Popen(cmd, stdin=self.stdIn, stdout=PIPE, stderr=PIPE)
+
+            # assign vars
+            stdout = thisCmd.stdout
+            stderr = thisCmd.stderr
+            lastCmd = thisCmd
+
+        # keep stdout, stderr and the return code
+        self.stdOut, self.stdErr = thisCmd.communicate()
+        self.returnCode = thisCmd.returncode
+        
+        # return true if return code was 0, false otherwise
+        return (self.returnCode == 0)
