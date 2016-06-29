@@ -13,7 +13,7 @@ class TidyCmd:
         self.cmds = []
         self.stdOut = PIPE
         self.stdErr = PIPE
-        self.stdIn = PIPE
+
         self.returnCode = -1
 
         # append the list to the cmds list to create a 2d list
@@ -58,24 +58,23 @@ class TidyCmd:
     # Run the command chain
     def run(self):
         lastCmd = None
+        stdIn = None
 
         # loop over the commands
         for cmd in self.cmds:
             # if this is not the first command then pipe stdout from the last command to stdin
             if (lastCmd is not None):
-                self.stdIn = lastCmd.stdout            # set the stdin for this command to be last commands stdout
+                # set the stdin for this command to be last commands stdout
+                stdIn = lastCmd.stdout
 
             # run the command with stdin from last command
-            thisCmd = Popen(cmd, stdin=self.stdIn, stdout=PIPE, stderr=PIPE)
+            thisCmd = Popen(cmd, stdin=stdIn, stdout=PIPE, stderr=PIPE)
 
-            # assign vars
-            stdout = thisCmd.stdout
-            stderr = thisCmd.stderr
             lastCmd = thisCmd
 
         # keep stdout, stderr and the return code
         self.stdOut, self.stdErr = thisCmd.communicate()
         self.returnCode = thisCmd.returncode
-        
+
         # return stdout as a string and strip the last newline
         return self.stdOut.decode('UTF-8').rstrip()

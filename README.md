@@ -46,7 +46,23 @@ tidyCmd.appendPipe(['grep', 'eth0'])
 
 tidyCmd.appendPipe(['awk', '{ print $5 }'])
 
-tidyCmd.run()
+print(tidyCmd.run())
 
-print(tidyCmd.getStdOut())
 ```
+
+stderr, stdout and the exit code are all stored for your later use:
+```
+# access stdout as a string:
+print(tidyCmd.getStdOut())
+
+# access stdout as bytes:
+print(tidyCmd.stdOut)
+
+# access stderr as a string:
+print(tidyCmd.getStdErr())
+
+# access stderr as bytes:
+print(tidyCmd.stdErr)
+
+# get the exit code
+print(tidyCmd.returnCode)
