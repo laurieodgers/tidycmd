@@ -10,15 +10,27 @@ tidyCmd.appendPipe(['grep', 'eth0'])
 tidyCmd.appendPipe(['awk', '{ print $5 }'])
 # print out the command as a string
 print(tidyCmd)
-print(tidyCmd)
-# run the command
-tidyCmd.run()
 
+# run the command
+print('RUN:')
+print('------cut------')
+print(tidyCmd.run())
+print('------cut------')
+print()
 # print stdOut
+print('STDOUT:')
+print('------cut------')
 print(tidyCmd.getStdOut())
+print('------cut------')
+print()
 
 # print stdErr
+print('STDERR:')
+print('------cut------')
 print(tidyCmd.getStdErr())
+print('------cut------')
+print()
 
-
-
+tidyCmd.run()
+# print the command again to prove nothing has changed
+print(tidyCmd)

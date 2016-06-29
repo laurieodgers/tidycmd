@@ -45,11 +45,11 @@ class TidyCmd:
 
     # decode stdout and return a string
     def getStdOut(self, encoding='UTF-8'):
-        return self.stdOut.decode(encoding)
+        return self.stdOut.decode(encoding).rstrip()
     
     # decode stderr and return a string
     def getStdErr(self, encoding='UTF-8'):
-        return self.stdErr.decode(encoding)
+        return self.stdErr.decode(encoding).rstrip()
 
     # append a command to the chain
     def appendPipe(self, cmd):
@@ -77,5 +77,5 @@ class TidyCmd:
         self.stdOut, self.stdErr = thisCmd.communicate()
         self.returnCode = thisCmd.returncode
         
-        # return true if return code was 0, false otherwise
-        return (self.returnCode == 0)
+        # return stdout as a string and strip the last newline
+        return self.stdOut.decode('UTF-8').rstrip()
