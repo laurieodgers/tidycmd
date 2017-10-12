@@ -7,7 +7,7 @@ setup(
       author = 'Laurie Odgers',
       author_email = 'laurieodgers83@gmail.com',
       url = 'https://github.com/laurieodgers/tidycmd',
-      download_url = 'https://github.com/peterldowns/mypackage/archive/0.1.tar.gz',
+      download_url = 'https://github.com/laurieodgers/tidycmd/archive/1.0.0.tar.gz',
       keywords = ['tidycmd', 'cmd', 'pipe', 'cli'],
       classifiers = [],
 )

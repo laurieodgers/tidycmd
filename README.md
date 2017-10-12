@@ -11,6 +11,9 @@ Instead of large blocks of Popen text chained together, this class will automati
 MIT License
 
 ## Changelog
+### 1.0.0
+- Updated structure for pip submission
+
 ### 0.3.0
 - Changed getStdOut() to trim the last newline from stdout
 - Changed getStdErr() to trim the last newline from stderr
