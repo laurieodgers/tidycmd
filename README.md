@@ -1,11 +1,11 @@
 # TidyCmd
 
-TidyCmd is a class for Python 3.5 to tidy up and simplify the process of piping Unix shell commands together securely, no "shell=True" necessary! 
+TidyCmd is a class for Python 3.5 to tidy up and simplify the process of piping Unix shell commands together securely, no "shell=True" necessary!
 
 Instead of large blocks of Popen text chained together, this class will automatically pipe commands together for you. It stores the exit code, stdOut, and stdErr for processing in your code.
 
 ### Version
-0.3.0
+1.0.0
 
 ## License
 MIT License
@@ -17,7 +17,7 @@ MIT License
 - Changed run() to return stdout from the end of the PIPE chain, with last newline trimmed
 
 ### 0.2.0
-- Added __str__ function to output a shell compatible command with quoting of blocks which include spaces. 
+- Added __str__ function to output a shell compatible command with quoting of blocks which include spaces.
 
 ### 0.1.0
 - Initial commit
