@@ -31,6 +31,11 @@ print(tidyCmd.getStdErr())
 print('------cut------')
 print()
 
+print('EXIT CODE:')
+print('------cut------')
+print(tidyCmd.returnCode)
+print('------cut------')
+
 tidyCmd.run()
 # print the command again to prove nothing has changed
 print(tidyCmd)

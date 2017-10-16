@@ -4,6 +4,36 @@ TidyCmd is a class for Python 3.5 to tidy up and simplify the process of piping 
 
 Instead of large blocks of Popen text chained together, this class will automatically pipe commands together for you. It stores the exit code, stdOut, and stdErr for processing in your code.
 
+## Installation
+
+`pip3 install tidycmd`
+
+## Usage:
+```
+from tidycmd import TidyCmd
+
+# create the object with the first command
+tidyCmd = TidyCmd(['ifconfig'])
+# first pipe
+tidyCmd.appendPipe(['grep', 'eth0'])
+# second pipe
+tidyCmd.appendPipe(['awk', '{ print $5 }'])
+# print out the command as a string
+print(tidyCmd)
+
+# run the commands
+print(tidyCmd.run())
+
+# print stdOut
+print(tidyCmd.getStdOut())
+
+# print stdErr
+print(tidyCmd.getStdErr())
+
+# exit code
+print(tidyCmd.returnCode)
+```
+
 ### Version
 1.0.0
 
