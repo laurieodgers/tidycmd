@@ -11,60 +11,7 @@ Instead of large blocks of Popen text chained together, this class will automati
 ## Usage:
 ```
 from tidycmd import TidyCmd
-
-# create the object with the first command
-tidyCmd = TidyCmd(['ifconfig'])
-# first pipe
-tidyCmd.appendPipe(['grep', 'eth0'])
-# second pipe
-tidyCmd.appendPipe(['awk', '{ print $5 }'])
-# print out the command as a string
-print(tidyCmd)
-
-# run the commands
-print(tidyCmd.run())
-
-# print stdOut
-print(tidyCmd.getStdOut())
-
-# print stdErr
-print(tidyCmd.getStdErr())
-
-# exit code
-print(tidyCmd.returnCode)
 ```
-
-### Version
-1.0.0
-
-## License
-MIT License
-
-## Changelog
-### 1.0.0
-- Updated structure for pip submission
-
-### 0.3.0
-- Changed getStdOut() to trim the last newline from stdout
-- Changed getStdErr() to trim the last newline from stderr
-- Changed run() to return stdout from the end of the PIPE chain, with last newline trimmed
-
-### 0.2.0
-- Added __str__ function to output a shell compatible command with quoting of blocks which include spaces.
-
-### 0.1.0
-- Initial commit
-
-## Contributing
-Contributions are always welcome; if you fix a bug or implement some extra functionality please issue a PR back to https://github.com/laurieodgers/tidycmd
-
-## Features
-  - Allows for neater code vs large blocks of Popen statements chained together.
-  - No need to fiddle with connecting stdout to stdin for each pipe; the plumbing between processes is performed automatically.
-  - Choose your format to decode stdOut/stdErr to.
-  - str(tidyCmd) will output a string which can be used in a shell for testing. This function will also automatically quote any elements which contain spaces.
-
-### Usage
 
 The following shell command will retrieve the MAC address of eth0:
 ```
@@ -99,3 +46,38 @@ print(tidyCmd.stdErr)
 
 # get the exit code
 print(tidyCmd.returnCode)
+
+```
+
+### Version
+1.0.1
+
+## License
+MIT License
+
+## Changelog
+### 1.0.1
+- Updates for pip
+
+### 1.0.0
+- Updated structure for pip submission
+
+### 0.3.0
+- Changed getStdOut() to trim the last newline from stdout
+- Changed getStdErr() to trim the last newline from stderr
+- Changed run() to return stdout from the end of the PIPE chain, with last newline trimmed
+
+### 0.2.0
+- Added __str__ function to output a shell compatible command with quoting of blocks which include spaces.
+
+### 0.1.0
+- Initial commit
+
+## Contributing
+Contributions are always welcome; if you fix a bug or implement some extra functionality please issue a PR back to https://github.com/laurieodgers/tidycmd
+
+## Features
+  - Allows for neater code vs large blocks of Popen statements chained together.
+  - No need to fiddle with connecting stdout to stdin for each pipe; the plumbing between processes is performed automatically.
+  - Choose your format to decode stdOut/stdErr to.
+  - str(tidyCmd) will output a string which can be used in a shell for testing. This function will also automatically quote any elements which contain spaces.
