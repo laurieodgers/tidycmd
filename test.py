@@ -39,3 +39,33 @@ print('------cut------')
 tidyCmd.run()
 # print the command again to prove nothing has changed
 print(tidyCmd)
+
+####################
+
+# check environment
+tidyCmd = TidyCmd(['which', 'ls'])
+
+# print out the command as a string
+print(tidyCmd)
+
+# run the command
+print('RUN:')
+print('------cut------')
+print(tidyCmd.run())
+print('------cut------')
+print()
+
+####################
+
+# modfy environment
+tidyCmd = TidyCmd(['env'], {'TIDYCMD_TEST': "TESTING"})
+
+# print out the command as a string
+print(tidyCmd)
+
+# run the command
+print('RUN:')
+print('------cut------')
+print(tidyCmd.run())
+print('------cut------')
+print()

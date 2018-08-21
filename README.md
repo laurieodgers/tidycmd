@@ -53,15 +53,21 @@ print(tidyCmd.returnCode)
 
 ```
 
+Modify your environment:
+```
+tidyCmd = TidyCmd(['env'], {'TIDYCMD_TEST': "TESTING"})
+```
+
 ### Version
-1.0.1
+1.0.2
 
 ## License
 MIT License
 
 ## Changelog
-### 1.0.1
-- Updates for pip
+### 1.1.0
+- Added ability to change environment
+- Added "exitCode" which is a more correct name for "returnCode" (now deprecated)
 
 ### 1.0.0
 - Updated structure for pip submission

@@ -11,12 +11,16 @@ import copy
 
 class TidyCmd:
     # cmd arg is a list
-    def __init__(self, cmd):
+    def __init__(self, cmd, env=None):
         self.cmds = []
         self.stdOut = PIPE
         self.stdErr = PIPE
+        self.env = env
 
+        # maintain backward compatibility
         self.returnCode = -1
+        # exit code
+        self.exitCode = -1
 
         # append the list to the cmds list to create a 2d list
         self.cmds.append(cmd)
@@ -70,13 +74,14 @@ class TidyCmd:
                 stdIn = lastCmd.stdout
 
             # run the command with stdin from last command
-            thisCmd = Popen(cmd, stdin=stdIn, stdout=PIPE, stderr=PIPE)
+            thisCmd = Popen(cmd, stdin=stdIn, stdout=PIPE, stderr=PIPE, env=self.env)
 
             lastCmd = thisCmd
 
         # keep stdout, stderr and the return code
         self.stdOut, self.stdErr = thisCmd.communicate()
         self.returnCode = thisCmd.returncode
+        self.exitCode = thisCmd.returncode
 
         # return stdout as a string and strip the last newline
         return self.stdOut.decode('UTF-8').rstrip()
